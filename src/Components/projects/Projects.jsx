@@ -1,7 +1,7 @@
 import React from 'react'
-import Frontend from '../../assets/frontend.png'
-import Frontend_1 from '../../assets/frontend_1.png'
-import Frontend_2 from '../../assets/frontend_2.png'
+import Frontend from '../../assets/Frontend.png'
+import Frontend_1 from '../../assets/Frontend_1.png'
+import Frontend_2 from '../../assets/Frontend_2.png'
 
 const ProjectCard = ({ image, title, link }) => (
     <div className='p-4 md:w-1/3 mb-6'>
