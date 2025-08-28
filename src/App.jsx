@@ -7,7 +7,7 @@ import Hero from './Components/hero/Hero'
 import Projects from './Components/projects/Projects'
 import Skills from './Components/skill/Skill'
 import Contact from './Components/contact/Contact'
-// import Experience from './Components/experience/Experience'
+import Experience from './Components/experience/Experience'
 // import Footer from './Components/footer/Footer'
 
 export default function App() {
@@ -21,10 +21,11 @@ export default function App() {
         <Hero/>
         <Projects />
         <Skills />
+        <Experience />
         <Contact />
-        {/* <Experience /> */}
-        {/* <Footer /> */}
         
+        {/* <Footer />
+         */}
     </main>
    )
   }

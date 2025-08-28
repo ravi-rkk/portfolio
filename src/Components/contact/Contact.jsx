@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Contact() {
   return (
-    <section id='contact' className='text-gray-600 body-font bg-[#D4A373]'>
+    <section id='contact' className='text-gray-600 body-font bg-[#FAEDCD] '>
       <div className='container mx-auto flex px-5 py-24 items-center justify-center flex-col'>
         <div data-aos='fade-up' data-aos-delay='300' className='text-center lg:w-2/3 w-full'>
           <h1 className='title-font sm:text-4xl text-3xl mb-8 font-medium text-[#432818]'>Contact</h1>

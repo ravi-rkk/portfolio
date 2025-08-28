@@ -6,6 +6,7 @@ export default function Navbar() {
     { id: 2, name: 'Skills', link: '#skills' },
     { id: 3, name: 'My Projects', link: '#projects' },
     { id: 4, name: 'Contact', link: '#contact' },
+    { id: 5, name: 'Experience', link: '#experience' },
   ];
 
   return (
