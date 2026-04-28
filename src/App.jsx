@@ -1,31 +1,59 @@
-import { useEffect } from 'react'
-import Aos from 'aos'
-import './App.css'
-import React from 'react'
-import 'aos/dist/aos.css'
-import Hero from './Components/hero/Hero'
-import Projects from './Components/projects/Projects'
-import Skills from './Components/skill/Skill'
-import Contact from './Components/contact/Contact'
-import Experience from './Components/experience/Experience'
-// import Footer from './Components/footer/Footer'
+// App.jsx — Root: loading → profile select → dashboard (with profile type)
 
-export default function App() {
-  useEffect(()=>{
-    Aos.init({
-      duration: 1000,
-    });
-  },[]);
-   return (
-    <main>
-        <Hero/>
-        <Projects />
-        <Skills />
-        <Experience />
-        <Contact />
-        
-        {/* <Footer />
-         */}
-    </main>
-   )
-  }
+import React, { useState, useEffect } from 'react';
+import LoadingSpinner from './components/LoadingSpinner';
+import LandingPage from './pages/LandingPage';
+import Dashboard from './pages/Dashboard';
+
+const SCREEN = { LOADING: 'loading', PROFILES: 'profiles', DASHBOARD: 'dashboard' };
+
+const App = () => {
+  const [screen, setScreen] = useState(SCREEN.LOADING);
+  const [dashboardVisible, setDashboardVisible] = useState(false);
+  const [profileType, setProfileType] = useState('fullstack'); // 'fullstack' | 'appdev' | 'hireme'
+
+  // Show loading spinner for 1.8s then profile selector
+  useEffect(() => {
+    const t = setTimeout(() => setScreen(SCREEN.PROFILES), 1800);
+    return () => clearTimeout(t);
+  }, []);
+
+  const handleProfileSelect = (profileId) => {
+    setProfileType(profileId);
+    setTimeout(() => {
+      setScreen(SCREEN.DASHBOARD);
+      setTimeout(() => setDashboardVisible(true), 100);
+    }, 700);
+  };
+
+  const handleBackToProfiles = () => {
+    setDashboardVisible(false);
+    setTimeout(() => {
+      setScreen(SCREEN.PROFILES);
+    }, 500);
+  };
+
+  return (
+    <div className="min-h-screen bg-[#141414] overflow-x-hidden flex flex-col">
+      {screen === SCREEN.LOADING && <LoadingSpinner />}
+
+      {screen === SCREEN.PROFILES && (
+        <LandingPage onProfileSelect={handleProfileSelect} />
+      )}
+
+      {screen === SCREEN.DASHBOARD && (
+        <div
+          style={{
+            opacity: dashboardVisible ? 1 : 0,
+            transform: dashboardVisible ? 'scale(1)' : 'scale(0.98)',
+            transition: 'opacity 700ms ease, transform 700ms ease',
+          }}
+        >
+          <Dashboard profileType={profileType} onProfileClick={handleBackToProfiles} />
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default App;
