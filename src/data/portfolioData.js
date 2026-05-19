@@ -17,7 +17,7 @@ export const profileData = {
   email: "rravilesh@gmail.com",
   phone: "7505309687",
   location: "Pune, Maharashtra",
-  resumeUrl: "#",
+  resumeUrl: "/Ravilesh_Kashyap_Resume2026.pdf",
   github: "https://github.com/ravi-rkk",
   linkedin: "https://www.linkedin.com/in/ka-ra",
 };

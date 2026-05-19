@@ -272,7 +272,7 @@ const Dashboard = ({ profileType = 'fullstack', onProfileClick }) => {
 
   return (
     <div id="dashboard" className="min-h-screen bg-[#141414]">
-      <Navbar onProfileClick={() => setShowAbout(true)} profileType={profileType} />
+      <Navbar onProfileClick={onProfileClick} profileType={profileType} />
 
       {/* Dynamic hero */}
       <HeroBillboard profileType={profileType} onMoreInfo={() => setShowAbout(true)} />
@@ -373,7 +373,7 @@ const Dashboard = ({ profileType = 'fullstack', onProfileClick }) => {
               {(profileType === 'appdev'
                 ? [
                     { label: 'Mobile Apps', value: '3+', icon: '📱', color: '#61dafb' },
-                    { label: 'App Users', value: '2K+', icon: '👥', color: '#f59e0b' },
+                    // { label: 'App Users', value: '2K+', icon: '👥', color: '#f59e0b' },
                     { label: 'Avg Rating', value: '4.7★', icon: '⭐', color: '#22c55e' },
                     { label: 'Platforms', value: 'iOS+Android', icon: '🌐', color: '#8b5cf6' },
                   ]

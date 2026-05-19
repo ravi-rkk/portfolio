@@ -1,4 +1,5 @@
 // App.jsx — Root: loading → profile select → dashboard (with profile type)
+// Browser back button is supported via History API pushState / popstate
 
 import React, { useState, useEffect } from 'react';
 import LoadingSpinner from './components/LoadingSpinner';
@@ -18,8 +19,25 @@ const App = () => {
     return () => clearTimeout(t);
   }, []);
 
+  // Listen for browser back/forward button
+  useEffect(() => {
+    const handlePopState = (e) => {
+      // If the user presses Back and state says we were on dashboard → go to profiles
+      if (e.state?.screen === 'profiles') {
+        setDashboardVisible(false);
+        setTimeout(() => setScreen(SCREEN.PROFILES), 300);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const handleProfileSelect = (profileId) => {
     setProfileType(profileId);
+
+    // Push a new history entry so the back button can return to profiles
+    window.history.pushState({ screen: 'profiles' }, '', window.location.href);
+
     setTimeout(() => {
       setScreen(SCREEN.DASHBOARD);
       setTimeout(() => setDashboardVisible(true), 100);
@@ -34,7 +52,7 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#141414] overflow-x-hidden flex flex-col">
+    <div style={{ background: '#141414', minHeight: '100vh' }}>
       {screen === SCREEN.LOADING && <LoadingSpinner />}
 
       {screen === SCREEN.PROFILES && (
